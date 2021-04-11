@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>井字棋</title>
+<link href="main.css" type="text/css" rel="stylesheet">
+
+</head>
+
+<body>
+	<div>
+		<div id="title1"></div>
+		<div id="title2"></div>
+		<table>
+			<tr>
+				<td class="cell" id="0" onmousedown="getEventTrigger(event)"></td>
+				<td class="cell" id="1" onmousedown="getEventTrigger(event)"></td>
+				<td class="cell" id="2" onmousedown="getEventTrigger(event)"></td>
+			</tr>
+			<tr>
+				<td class="cell" id="3" onmousedown="getEventTrigger(event)"></td>
+				<td class="cell" id="4" onmousedown="getEventTrigger(event)"></td>
+				<td class="cell" id="5" onmousedown="getEventTrigger(event)"></td>
+			</tr>
+			<tr>
+				<td class="cell" id="6" onmousedown="getEventTrigger(event)"></td>
+				<td class="cell" id="7" onmousedown="getEventTrigger(event)"></td>
+				<td class="cell" id="8" onmousedown="getEventTrigger(event)"></td>
+			</tr>
+		</table>
+		<button onclick="reStart()" class="Restart" >
+		Restart
+		</button>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
