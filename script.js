@@ -4,17 +4,26 @@ const AIPLAYER = 'X';
 const cells=document.querySelectorAll(".cell");
 var r = Array.from(cells);
 var GAMEOVER = 0;
-		
+var arr= new Array(18);
+var x=4;
+var YourScore=0;
+var ComputerScore=0;
+console.log(arr);
+
+//计分板
+document.querySelector("#title1").innerHTML="您得分"+YourScore;
+document.querySelector("#title2").innerHTML="电脑得分"+ComputerScore;
+
 //玩家落子
 var count1=0;
 var arr1= new Array(9);
 var exit= false;
-var arr= new Array(18);
-arr1[5]=114514;
+arr1[3]=114514;
+arr1[4]=114514;
 function getEventTrigger(event){
 	const A=event.target.id;
 	if(GAMEOVER==0){    //游戏结束之后无法落子
-	arr[18]=1919810;  //防止array some()方法不检测空数组而报错
+	arr[17]=1919810;  //防止array some()方法不检测空数组而报错
 		console.log(A);
 		console.log(arr);
 	if(arr.some(function(element,index,array){    //避免在同一位置落子
@@ -23,16 +32,16 @@ function getEventTrigger(event){
 		}
 		return true;
 	}))
-	{cells[A].innerText=PLAYER;    //乞丐版绘图
+	{cells[A].innerText=PLAYER;    
 	r[A]=1;
 	console.log(arr1);
 	arr1[count1]=A;
 	count1++;
 	console.log('count1='+count1);
 	checkWin();
-	 
-	console.log(arr1[5]);
-	if(exit==false&&arr1[5]==114514){    //防止游戏结束后AI继续落子,arr长度为8时不执行AI函数（*1）
+	
+	console.log(arr1[4]);
+	if(exit==false&&arr1[x]==114514){    //防止游戏结束后AI继续落子,arr长度为8时不执行AI函数（*1）
 	ai(arr1)
 	}
 }
@@ -40,6 +49,7 @@ function getEventTrigger(event){
 }
 //人工智障
 var count2=0;
+var index=0;
 var arr2= new Array(9);
 function ai(arr1){
 	do{
@@ -47,19 +57,24 @@ function ai(arr1){
 	    var B=Math.floor(Math.random()*9);
 		console.log(arr1);
 		console.log('B='+B);
-		arr=arr.concat(arr2);
+		arr[index]=arr1[count2];
+		
 	}while(arr.some(function(element,index,array){    //实现在棋盘空白处落子;当arr长度为8时死循环,利用(*1)跳出
 		if (element==B){
 			return true;
 		}
 		return false;
 	}))
-	cells[B].innerText=AIPLAYER;    //乞丐版绘图
+	cells[B].innerText=AIPLAYER;    
 	r[B]=2;
 	arr2[count2]=B;
+	arr[index+1]=arr2[count2]
 	count2++;
+	index=index+2;
 	console.log('count2='+count2);
+	console.log(arr);
 	checkWin();
+	
 }
 
 console.log(r);
@@ -77,7 +92,10 @@ function checkWin(){
 		{
 			GAMEOVER=1;
 			exit=true;
+			YourScore++;
 			window.setTimeout("alert('你赢了!')",1);	//先显示落子，再弹窗
+			document.querySelector("#title1").innerHTML="您得分"+YourScore;
+            document.querySelector("#title2").innerHTML="电脑得分"+ComputerScore;
 		}
 	else if(
        r[0]==r[1]&&r[1]==r[2]&&r[2]==2||
@@ -91,16 +109,19 @@ function checkWin(){
 		{
 			GAMEOVER=1;
 			exit=true;
+			ComputerScore++;
 			window.setTimeout("alert('你输了!')",1);//先显示落子，再弹窗
+			document.querySelector("#title1").innerHTML="您得分"+YourScore;
+            document.querySelector("#title2").innerHTML="电脑得分"+ComputerScore;
 		}
 	else if(
-	   arr1[5]!=114514){
+	   arr1[4]!=114514){
 	   GAMEOVER=1;
 	   exit=true;
 	   window.setTimeout("alert('平局')",1);
 	}
 	else{
-		arr1[5]=114514;	//
+		arr1[4]=114514;	//
 	}
 }
 
@@ -110,11 +131,11 @@ function reStart(){
 		cells[i].innerText=""; 
 		r[i]=0;
 	}
+	    arr=new Array(18);
 		exit=false;
 		arr1= new Array(9);
-	    arr1[5]=114514;
+	    arr1[4]=114514;
 		arr2= new Array(9);
-		arr= new Array(18);
 		count1=0;
 		count2=0;
 		B=0;
