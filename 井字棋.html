@@ -8,11 +8,10 @@
 </head>
 
 <body>
-	<div>
+	<div id="board">
 		<div id="title1"></div>
 		<div id="title2"></div>
-		<button id="aiFirst" onMouseDown="aiFirst()">人机先手</button>
-		<table>
+		<table id="table">
 			<tr>
 				<td class="cell" id="0" onmousedown="getEventTrigger(event)"></td>
 				<td class="cell" id="1" onmousedown="getEventTrigger(event)"></td>
@@ -29,6 +28,7 @@
 				<td class="cell" id="8" onmousedown="getEventTrigger(event)"></td>
 			</tr>
 		</table>
+		<button id="aiFirst" onMouseDown="aiFirst()">人机先手</button>
 		<button onclick="reStart()" class="Restart" >
 		Restart
 		</button>
