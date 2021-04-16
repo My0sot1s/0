@@ -46,12 +46,13 @@ function getEventTrigger(event){
 	r[A]=1;
 	console.log(arr1);
 	arr1[count1]=A;
+	console.log(count1);
 	count1++;
 	checkWin();
 	console.log(arr1);
 	console.log("exit"+exit);
 	console.log(arr1[x]);
-	if(exit==false&&arr1[x]==114514){    //防止游戏结束后AI继续落子,arr长度为8时不执行AI函数（*1）
+	if(exit==false&&arr1[x]==114514){    //防止游戏结束后AI继续落子（*1）
 	ai(arr1)
 	}
 }
@@ -122,7 +123,7 @@ function checkWin(){
             document.querySelector("#title2").innerHTML="电脑得分:"+ComputerScore;
 		}
 	else if(
-	   arr[y]!=1919810){
+	   arr[y]!=1919810||arr1[4]!=114514){		//平局条件
 	   GAMEOVER=1;
 	   exit=true;
 	   if(repeat==0){
